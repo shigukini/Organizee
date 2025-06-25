@@ -304,9 +304,29 @@
             <p class="text-sm opacity-70">
                 Streamline your life with powerful organization tools.
             </p>
-            <p class="text-sm opacity-70 mt-4">
-                Total visitors: <img src="https://counter.website.com/api/v2/counter?page=shigukini.github.io/Organizee" alt="Visitor count">
+            <p class="text-sm opacity-70 mt-4 flex items-center justify-center">
+                Total visitors: <span id="visits" class="ml-1 font-bold">0</span>
             </p>
+            <script>
+                // This script fetches the visitor count from the API and displays it as a number
+                const pageId = 'shigukini.github.io/Organizee'; // Your unique page ID
+                const url = 'https://api.countapi.xyz/hit/' + pageId;
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        document.getElementById('visits').textContent = data.value;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching visitor count:', error);
+                        document.getElementById('visits').textContent = 'Error';
+                    });
+            </script>
             </div>
     </footer>
 
