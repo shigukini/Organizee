@@ -307,43 +307,7 @@
             <p class="text-sm opacity-70 mt-4 flex items-center justify-center">
                 Total visitors: <span id="visits" class="ml-1 font-bold">0</span>
             </p>
-            <script>
-                // --- FIX: Improved counter logic to ensure it increments correctly ---
-                const pageId = 'shigukini.github.io/Organizee'; // Your unique page ID
-                const hitUrl = 'https://api.countapi.xyz/hit/' + pageId;
-                const getUrl = 'https://api.countapi.xyz/get/' + pageId;
-                
-                // Function to update the counter display
-                function updateCounter(value) {
-                    const visitsElement = document.getElementById('visits');
-                    if (visitsElement) {
-                        visitsElement.textContent = value;
-                    }
-                }
-
-                // First, increment the counter
-                fetch(hitUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response from HIT was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        // After successful increment, update the display
-                        updateCounter(data.value);
-                    })
-                    .catch(error => {
-                        console.error('Error incrementing visitor count:', error);
-                        // If increment fails, try to just get the current count
-                        fetch(getUrl)
-                            .then(response => response.json())
-                            .then(data => updateCounter(data.value))
-                            .catch(() => updateCounter('Error')); // Fallback to error
-                    });
-                // --- FIX ENDS HERE ---
-            </script>
-            </div>
+        </div>
     </footer>
 
     <script>
@@ -365,6 +329,25 @@
                     alert('Please provide the actual download link to enable this button!');
                 }
             });
+
+            // --- SIMPLIFIED & DIRECT VISITOR COUNTER LOGIC (v3) ---
+            // This script makes a simple call to increment the counter and update the display.
+            const counterKey = 'shigukini.github.io/Organizee_site_visits'; 
+            const hitUrl = 'https://api.countapi.xyz/hit/' + counterKey;
+            
+            fetch(hitUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const visitsElement = document.getElementById('visits');
+                    if (visitsElement) {
+                        visitsElement.textContent = data.value;
+                    }
+                })
+                .catch(error => {
+                    // Log any errors to the console, but don't show an error message on the page.
+                    console.error('Error incrementing counter:', error);
+                });
+            // --- END OF SIMPLIFIED LOGIC ---
         });
     </script>
 </body>
