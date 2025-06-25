@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organizee App</title>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PDBPJQ6F');</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -234,6 +239,8 @@
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDBPJQ6F"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="hero-section">
         <div class="content-container">
             <div class="app-logo">
@@ -263,7 +270,7 @@
                 <div class="feature-image">
                     <img src="https://i.imgur.com/smVGNGC.jpeg" alt="Detailed Notes">
                 </div>
-                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Detailed Notes</h3>
+                <h3 class="2xl font-semibold mb-3 text-gray-800">Detailed Notes</h3>
                 <p class="text-gray-600 leading-relaxed">Jot down important information, lectures, or ideas with a clean and intuitive interface.</p>
             </div>
 
@@ -271,7 +278,7 @@
                 <div class="feature-image">
                     <img src="https://i.imgur.com/3uuD8rp.jpeg" alt="Stay on Top of Tasks">
                 </div>
-                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Stay on Top of Tasks</h3>
+                <h3 class="2xl font-semibold mb-3 text-gray-800">Stay on Top of Tasks</h3>
                 <p class="text-gray-600 leading-relaxed">Effortlessly manage your to-do lists, mark tasks as complete, and track your progress.</p>
             </div>
 
@@ -279,7 +286,7 @@
                 <div class="feature-image">
                     <img src="https://i.imgur.com/UpJxixR.jpeg" alt="Quick Access">
                 </div>
-                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Quick Access</h3>
+                <h3 class="2xl font-semibold mb-3 text-gray-800">Quick Access</h3>
                 <p class="text-gray-600 leading-relaxed">Find anything quickly with our powerful and fast search functionality across all your content.</p>
             </div>
         </div>
@@ -304,9 +311,6 @@
             <p class="text-sm opacity-70">
                 Streamline your life with powerful organization tools.
             </p>
-            <p class="text-sm opacity-70 mt-4 flex items-center justify-center">
-                Total visitors: <span id="visits" class="ml-1 font-bold">0</span>
-            </p>
         </div>
     </footer>
 
@@ -329,25 +333,6 @@
                     alert('Please provide the actual download link to enable this button!');
                 }
             });
-
-            // --- SIMPLIFIED & DIRECT VISITOR COUNTER LOGIC (v3) ---
-            // This script makes a simple call to increment the counter and update the display.
-            const counterKey = 'shigukini.github.io/Organizee_site_visits'; 
-            const hitUrl = 'https://api.countapi.xyz/hit/' + counterKey;
-            
-            fetch(hitUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const visitsElement = document.getElementById('visits');
-                    if (visitsElement) {
-                        visitsElement.textContent = data.value;
-                    }
-                })
-                .catch(error => {
-                    // Log any errors to the console, but don't show an error message on the page.
-                    console.error('Error incrementing counter:', error);
-                });
-            // --- END OF SIMPLIFIED LOGIC ---
         });
     </script>
 </body>
