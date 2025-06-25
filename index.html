@@ -308,24 +308,40 @@
                 Total visitors: <span id="visits" class="ml-1 font-bold">0</span>
             </p>
             <script>
-                // This script fetches the visitor count from the API and displays it as a number
+                // --- FIX: Improved counter logic to ensure it increments correctly ---
                 const pageId = 'shigukini.github.io/Organizee'; // Your unique page ID
-                const url = 'https://api.countapi.xyz/hit/' + pageId;
+                const hitUrl = 'https://api.countapi.xyz/hit/' + pageId;
+                const getUrl = 'https://api.countapi.xyz/get/' + pageId;
+                
+                // Function to update the counter display
+                function updateCounter(value) {
+                    const visitsElement = document.getElementById('visits');
+                    if (visitsElement) {
+                        visitsElement.textContent = value;
+                    }
+                }
 
-                fetch(url)
+                // First, increment the counter
+                fetch(hitUrl)
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            throw new Error('Network response from HIT was not ok');
                         }
                         return response.json();
                     })
                     .then(data => {
-                        document.getElementById('visits').textContent = data.value;
+                        // After successful increment, update the display
+                        updateCounter(data.value);
                     })
                     .catch(error => {
-                        console.error('Error fetching visitor count:', error);
-                        document.getElementById('visits').textContent = 'Error';
+                        console.error('Error incrementing visitor count:', error);
+                        // If increment fails, try to just get the current count
+                        fetch(getUrl)
+                            .then(response => response.json())
+                            .then(data => updateCounter(data.value))
+                            .catch(() => updateCounter('Error')); // Fallback to error
                     });
+                // --- FIX ENDS HERE ---
             </script>
             </div>
     </footer>
